@@ -5,9 +5,7 @@ abstract class Conta (private var cliente: Cliente) {
     protected var saldoConta: Double = 0.0
 
     abstract fun sacarValor(valor:Double);
-    //abstract fun consultarSaldo();
 
-    //retorna saldoConta atualizado
     open fun depositarValor(valor: Double){
         saldoConta+=valor
         println("Depósito realizado com sucesso. Saldo Disponível: $saldoConta")
