@@ -1,11 +1,9 @@
 package exSantanderConta
 
-class Cliente(codigo: String = "", nome: String = "", rg: String = "", cpf: String = "") {
-
-    private var codCliente = codigo
-    private var nomeCliente = nome
-    private var rgCliente = rg
-    private var cpfCliente = cpf
+class Cliente(private var codCliente: String,
+              private var nomeCliente: String = "",
+              private var rgCliente: String = "",
+              private var cpfCliente: String) {
 
     init{
         verificarCadastro()
