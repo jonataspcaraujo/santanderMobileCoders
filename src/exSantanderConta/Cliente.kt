@@ -9,7 +9,7 @@ class Cliente(private var codCliente: String,
         verificarCadastro()
     }
     fun verificarCadastro() {
-        println("Verificação de Cadastro de Cliente")
+        println("Verificação de Cadastro de Cliente...")
         if (codCliente == "")   setCodCliente()
         if (nomeCliente == "")  setNomeCliente()
         if (rgCliente == "")    setRgCliente()
