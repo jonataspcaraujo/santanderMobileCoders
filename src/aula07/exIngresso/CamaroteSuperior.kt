@@ -1,4 +1,4 @@
-package exIngresso
+package aula07.exIngresso
 
 class CamaroteSuperior (valorIngresso: Float,adicionalVIP: Float, valorSuperior: Float):
     IngressoVIP(valorIngresso, adicionalVIP){

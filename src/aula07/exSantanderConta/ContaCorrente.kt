@@ -1,4 +1,4 @@
-package exSantanderConta
+package aula07.exSantanderConta
 
 class ContaCorrente(cliente: Cliente, var limiteChequeEspecial: Double = 0.0 ):
     Conta(cliente){

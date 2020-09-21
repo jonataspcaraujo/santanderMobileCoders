@@ -1,4 +1,4 @@
-package exIngresso
+package aula07.exIngresso
 
 class IngressoNormal(valorIngresso: Float):Ingresso(valorIngresso){
     init {

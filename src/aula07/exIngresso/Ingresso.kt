@@ -1,4 +1,4 @@
-package exIngresso
+package aula07.exIngresso
 
 abstract class Ingresso (var valorIngresso: Float){
     var categoriaIngresso: String = ""

@@ -1,4 +1,4 @@
-package exSantanderConta
+package aula07.exSantanderConta
 
 class ContaPoupanca(var cliente: Cliente):
     Conta(cliente){
@@ -15,7 +15,6 @@ class ContaPoupanca(var cliente: Cliente):
             println("saldo não disponível")
         }
     }
-
     fun recolherJurosAcumulados(taxa: Double){
         rendimentoJuros += this.saldoConta*taxa
         println("Recolhimento de Juros: R$ $rendimentoJuros")

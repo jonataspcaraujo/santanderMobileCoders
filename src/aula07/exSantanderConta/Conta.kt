@@ -1,4 +1,4 @@
-package exSantanderConta
+package aula07.exSantanderConta
 
 abstract class Conta (private var cliente: Cliente) {
 
@@ -13,7 +13,4 @@ abstract class Conta (private var cliente: Cliente) {
     open fun consultarSaldo() {
         println ("Saldo disponível em conta: R$ $saldoConta")
     }
-
-
-
 }

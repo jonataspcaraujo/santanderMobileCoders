@@ -1,10 +1,9 @@
-package exSantanderConta
+package aula07.exSantanderConta
 
 class Cliente(private var codCliente: String,
               private var nomeCliente: String = "",
               private var rgCliente: String = "",
               private var cpfCliente: String) {
-
     init{
         verificarCadastro()
     }

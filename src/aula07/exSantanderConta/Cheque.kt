@@ -1,4 +1,4 @@
-package exSantanderConta
+package aula07.exSantanderConta
 
 class Cheque (private var valorCheque: Double,
               private var bancoEmissor: String,
@@ -13,7 +13,4 @@ class Cheque (private var valorCheque: Double,
     fun getDataPagamento():String{
         return dataPg
     }
-
-
-
 }

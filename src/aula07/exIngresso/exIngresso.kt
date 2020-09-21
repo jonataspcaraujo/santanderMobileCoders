@@ -1,4 +1,4 @@
-package exIngresso
+package aula07.exIngresso
 
 fun main(){
     println("Teste")
