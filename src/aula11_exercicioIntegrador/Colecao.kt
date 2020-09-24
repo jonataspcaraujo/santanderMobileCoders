@@ -5,8 +5,13 @@ class Colecao(var codigoColecao: Int,
               var obras: MutableSet<Livro>,
               var precoVenda: Double,
               var precoAluguel: Double) {
+    var disponibilidade: String
+
     init{
-        var statuColecao = "Disponível"
+        disponibilidade = "Disponível"
+    }
+    fun setStatusColecao(statusColecao: String){
+        this.disponibilidade = statusColecao
     }
 
 }

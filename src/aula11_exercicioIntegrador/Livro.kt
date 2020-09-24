@@ -7,9 +7,11 @@ class Livro(var codigoLivro: Int,
             var precoVenda: Double,
             var precoAluguelDia: Double) {
 
-    var statusLivro: String
-
-   init{
-        this.statusLivro = "Disponível"
+    var disponibilidade: String
+    init{
+        disponibilidade = "Disponível"
    }
+    fun setStatusLivro(statusLivro: String){
+        this.disponibilidade = statusLivro
+    }
 }

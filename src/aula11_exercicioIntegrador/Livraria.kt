@@ -25,7 +25,7 @@ class Livraria(var nomeLivraria: String, var dataFundacao: String) {
     }
     fun consultarLivro(titulo: String): Boolean{
         livros.forEach {
-            if (it.value.tituloLivro.equals(titulo)) {
+            if (it.value.tituloLivro.equals(titulo) && it.value.disponibilidade.equals("Disponível")) {
                         return true
                     }
         }
@@ -33,7 +33,8 @@ class Livraria(var nomeLivraria: String, var dataFundacao: String) {
     }
     fun consultarLivro(codigoLivro:Int): Boolean{
         livros.forEach {
-            if (it.value.codigoLivro.equals(codigoLivro)) {
+            if (it.value.codigoLivro.equals(codigoLivro) && it.value.disponibilidade.equals("Disponível")) {
+
                 return true
             }
         }
@@ -41,7 +42,7 @@ class Livraria(var nomeLivraria: String, var dataFundacao: String) {
     }
     fun consultarColecao(titulo: String): Boolean{
         colecoes.forEach {
-            if (it.value.titulo.equals(titulo)) {
+            if (it.value.titulo.equals(titulo) && it.value.disponibilidade.equals("Disponível")) {
                 return true
             }
         }
@@ -49,19 +50,34 @@ class Livraria(var nomeLivraria: String, var dataFundacao: String) {
     }
     fun consultarColecao(codigoColecao: Int):Boolean{
         colecoes.forEach {
-            if (it.value.codigoColecao.equals(codigoColecao)) {
+            if (it.value.codigoColecao.equals(codigoColecao) && it.value.disponibilidade.equals("Disponível")) {
                 return true
             }
         }
         return false
     }
-    fun alugarLivro(livro: Livro){
-        livro.statusLivro = "Alugado"
+    fun alugarLivro(livro: Livro, cliente: Cliente){
+        if (consultarLivro(livro.codigoLivro)){
+            livros.get(livro.codigoLivro)?.setStatusLivro("Alugado")
+            cliente.registraLivrosAlugados(livro)
+        } else{
+            println("Livro não disponível para locação)")
+        }
     }
-    fun alugarColecao(colecao: Colecao){
-       TODO()
+    fun alugarColecao(colecao: Colecao, cliente: Cliente){
+        if (consultarColecao(colecao.codigoColecao)){
+            colecoes.get(colecao.codigoColecao)?.setStatusColecao("Alugado")
+            cliente.registraColecoesAlugadas(colecao)
+        } else{
+            println("Livro não disponível para locação)")
+        }
     }
-    fun efetuarVenda(codigo: Int){
+
+    fun efetuarVenda(codigoLivro: Int){
+        TODO()
+    }
+
+    fun verificarEstoque(){
         TODO()
     }
 
