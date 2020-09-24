@@ -39,11 +39,21 @@ class Livraria(var nomeLivraria: String, var dataFundacao: String) {
         }
         return false
     }
-    fun consultarColecao(titulo: String){
-        TODO()
+    fun consultarColecao(titulo: String): Boolean{
+        colecoes.forEach {
+            if (it.value.titulo.equals(titulo)) {
+                return true
+            }
+        }
+        return false
     }
-    fun consultarColecao(codigoColecao: Int){
-        TODO()
+    fun consultarColecao(codigoColecao: Int):Boolean{
+        colecoes.forEach {
+            if (it.value.codigoColecao.equals(codigoColecao)) {
+                return true
+            }
+        }
+        return false
     }
     fun alugarLivro(livro: Livro){
         livro.statusLivro = "Alugado"
