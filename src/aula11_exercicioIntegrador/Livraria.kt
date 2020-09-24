@@ -51,10 +51,11 @@ class Livraria(var nomeLivraria: String, var dataFundacao: String) {
     fun consultarColecao(codigoColecao: Int):Boolean{
         colecoes.forEach {
             if (it.value.codigoColecao.equals(codigoColecao) && it.value.disponibilidade.equals("Disponível")) {
+                println("Disponibilidade da coleção: ${it.value.disponibilidade}")
                 return true
             }
         }
-        return false
+       return false
     }
     fun alugarLivro(livro: Livro, cliente: Cliente, funcionario: Funcionario){
         if (consultarLivro(livro.codigoLivro)){
@@ -74,7 +75,6 @@ class Livraria(var nomeLivraria: String, var dataFundacao: String) {
             println("Livro não disponível para locação)")
         }
     }
-
     fun efetuarVenda(codigo: Int, cliente:Cliente, funcionario: Funcionario){
         if (consultarLivro(codigo)){
 //            println("Vendendo livros")
@@ -94,7 +94,28 @@ class Livraria(var nomeLivraria: String, var dataFundacao: String) {
     }
 
     fun verificarEstoque(){
-        TODO()
+        var disponivel = 0
+        var alugado = 0
+        var vendido = 0
+        var valorVendidos =0.0
+        livros.forEach{
+            when(it.value.disponibilidade){
+                "Disponível"-> disponivel++
+                "Alugado" -> alugado++
+                "Vendido" -> {
+                    vendido++
+                    valorVendidos+=it.value.precoVenda
+                }
+                else ->{
+                    println("verificar estoque")
+                }
+            }
+        }
+        println("Verificação de Estoque")
+        println("Total Itens Disponíveis: $disponivel")
+        println("Total Itens Alugados: $alugado")
+        println("Total Itens Vendidos: $vendido")
+        println("Valor Total em vendas: R$ $valorVendidos")
     }
 
 
