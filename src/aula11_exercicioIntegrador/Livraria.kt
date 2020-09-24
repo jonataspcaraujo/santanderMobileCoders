@@ -56,25 +56,41 @@ class Livraria(var nomeLivraria: String, var dataFundacao: String) {
         }
         return false
     }
-    fun alugarLivro(livro: Livro, cliente: Cliente){
+    fun alugarLivro(livro: Livro, cliente: Cliente, funcionario: Funcionario){
         if (consultarLivro(livro.codigoLivro)){
             livros.get(livro.codigoLivro)?.setStatusLivro("Alugado")
             cliente.registraLivrosAlugados(livro)
+            funcionario.registraAluguel(livro)
         } else{
             println("Livro não disponível para locação)")
         }
     }
-    fun alugarColecao(colecao: Colecao, cliente: Cliente){
+    fun alugarColecao(colecao: Colecao, cliente: Cliente, funcionario: Funcionario){
         if (consultarColecao(colecao.codigoColecao)){
             colecoes.get(colecao.codigoColecao)?.setStatusColecao("Alugado")
             cliente.registraColecoesAlugadas(colecao)
+            funcionario.registraAluguel(colecao)
         } else{
             println("Livro não disponível para locação)")
         }
     }
 
-    fun efetuarVenda(codigoLivro: Int){
-        TODO()
+    fun efetuarVenda(codigo: Int, cliente:Cliente, funcionario: Funcionario){
+        if (consultarLivro(codigo)){
+//            println("Vendendo livros")
+            livros.get(codigo)?.setStatusLivro("Vendido")
+           cliente.registraLivrosComprados(livros.get(codigo))
+            livros.get(codigo)?.let { funcionario.registraVenda(it) }
+        } else if (consultarColecao(codigo)) {
+//            println("Vendendo colecoes")
+            colecoes.get(codigo)?.setStatusColecao("Vendido")
+            cliente.registraColecoesCompradas(colecoes.get(codigo))
+            colecoes.get(codigo)?.let { funcionario.registraVenda(it) }
+        } else{
+            println("Itens não disponíveis para vendaS")
+        }
+
+
     }
 
     fun verificarEstoque(){
