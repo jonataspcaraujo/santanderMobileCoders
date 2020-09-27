@@ -44,13 +44,33 @@ fun main(){
 //   curso.removerAluno(aluno)
 //   println("Vagas Disponíveis: ${curso.getVagasDisponíveis()}")
 
-   val aluno1 = Aluno(123,"jonatas", "araujo")
-   val profT = ProfTitular("Kotlin")
-   val profA = ProfAdjunto(8)
-   val curso1 = Curso("Curso A",369,10,profT,profA)
-   val matricula = Matricula(aluno1, curso1)
-   println("Matricula Atual")
-   println("Aluno: ${matricula.getMatAluno().getNome()}")
-   println("Curso: ${matricula.getMatCurso().getNomeCurso()}")
-   println("Data matricula: ${matricula.getDataMatricula()}")
+//   val aluno1 = Aluno(123,"jonatas", "araujo")
+//   val profT = ProfTitular("Kotlin")
+//   val profA = ProfAdjunto(8)
+//   val curso1 = Curso("Curso A",369,10,profT,profA)
+//   val matricula = Matricula(aluno1, curso1)
+//   println("Matricula Atual")
+//   println("Aluno: ${matricula.getMatAluno().getNome()}")
+//   println("Curso: ${matricula.getMatCurso().getNomeCurso()}")
+//   println("Data matricula: ${matricula.getDataMatricula()}")
+
+   var gestor = DigitalHouseManager()
+   gestor.registrarCurso("Kotlin", 999,20)
+   gestor.registrarCurso("Android", 888,20)
+   gestor.registrarCurso("Android", 888,50)
+   gestor.registrarCurso("Scrum", 777,20)
+   println("Lista de Cursos após inclusões")
+   var cursos = gestor.getRelacaoCursos()
+   cursos.forEach {
+      println("${it.getCodigoCurso()} - ${it.getNomeCurso()}")
+   }
+   gestor.excluirCurso(888)
+   gestor.excluirCurso(963)
+   println("Lista de Cursos após remoção")
+   cursos.forEach {
+      println("${it.getCodigoCurso()} - ${it.getNomeCurso()}")
+   }
+
+  // val nomes = mutableSetOf<String>()
+
 }

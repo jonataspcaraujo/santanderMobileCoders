@@ -4,47 +4,47 @@ import aula08.retornaValorPadrao
 
 class Curso(private var nome: String? = null,
             private var codigo: Int = -1,
-            private var maxVagas: Int = -1,
-            private var profTitular: ProfTitular? = null,
-            private var profAdjunto: ProfAdjunto? = null){
+            private var maxVagas: Int = -1){
 
+    private var profTitular: ProfTitular? = null
+    private var profAdjunto: ProfAdjunto? = null
     private var sAlunos = mutableSetOf<Aluno>()
 
     init{
-        println("cadastrando curso")
-        print("Código do Curso: ")
-        val cod = readLine()
-        cod?.let {
-            try{
-                setCodigoCurso(cod.toInt())
-            }
-            catch (exception: NumberFormatException){
-                println("Código não reconhecido. Informe código numerico")
-            }
-        }
-        var aux: String? = null
-        print("Nome do Curso: ")
-        aux = readLine()
-        aux?.let {
-            setNomeCurso(aux.toString())
-        }
-      //Iniciando total de vagas
-        var max: Int = maxVagas
-        max?.let {
-            while (max < 0) {
-                print("Total de vagas: ")
-                try {
-                    max = readLine()?.toInt()?: continue
-                    if (max >= 0) {
-                        setMaxVagas(max)
-                        break
-                    }
-                } catch (exception: NumberFormatException) {
-                    println("Valor de formato inválido")
-                }
-            }
-        }
-
+//        println("cadastrando curso")
+//        print("Código do Curso: ")
+//        val cod = readLine()
+//        cod?.let {
+//            try{
+//                setCodigoCurso(cod.toInt())
+//            }
+//            catch (exception: NumberFormatException){
+//                println("Código não reconhecido. Informe código numerico")
+//            }
+//        }
+//        var aux: String? = null
+//        print("Nome do Curso: ")
+//        aux = readLine()
+//        aux?.let {
+//            setNomeCurso(aux.toString())
+//        }
+//      //Iniciando total de vagas
+//        var max: Int = maxVagas
+//        max?.let {
+//            while (max < 0) {
+//                print("Total de vagas: ")
+//                try {
+//                    max = readLine()?.toInt()?: continue
+//                    if (max >= 0) {
+//                        setMaxVagas(max)
+//                        break
+//                    }
+//                } catch (exception: NumberFormatException) {
+//                    println("Valor de formato inválido")
+//                }
+//            }
+//        }
+//
 
     }
 
