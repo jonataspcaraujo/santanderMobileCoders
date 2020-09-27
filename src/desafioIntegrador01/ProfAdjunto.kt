@@ -7,7 +7,7 @@ class ProfAdjunto(private var qtdHrMonitoria: Int = -1): Professor() {
             while(horas < 0 ){
                 print("Horas Monitoria por semana: ")
                 try {
-                    horas = readLine()?.toInt() ?: continue
+                    horas = readLine()?.toInt()?: continue
                     if (horas >= 0) {
                         setQtdMonitoria(horas)
                     }

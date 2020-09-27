@@ -29,4 +29,5 @@ abstract class Professor():Pessoa() {
 //        println("Diferenca dia: $dias")
         return tempoDeCasa
     }
+
 }

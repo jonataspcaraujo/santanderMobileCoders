@@ -1,34 +1,50 @@
 package desafioIntegrador01
 
-abstract class Pessoa() {
-    private var nome: String? = null
-    private var sobrenome: String? = null
-    private var codigo: Int = 0
+abstract class Pessoa(
+        private var codigo: Int = 0,
+        private var nome: String? = null,
+        private var sobrenome: String? = null) {
 
     init{
-        println("Atualização Cadastral")
-        print("Código: ")
-        val cod = readLine()
+        println("Verificando Situação Cadastral")
+        this.codigo?: verificaMatricula()
+        if(this.codigo <= 0) verificaMatricula()
+        this.nome?: verificaNome()
+        this.sobrenome?: verificaSobrenome()
+    }
+    private fun verificaMatricula(){
+        print("matrícula: ")
+        var cod = this.codigo
         cod?.let {
-            try{
-                setCodigo(cod.toInt())
+            while(cod <= 0){
+                print("matrícula: ")
+                try{
+                    cod = readLine()?.toInt()?: continue
+                    if(cod > 0)
+                        setCodigo(cod)
+                }
+                catch (exception: NumberFormatException){
+                    println("Código não reconhecido. Informe código numerico")
+                }
             }
-            catch (exception: NumberFormatException){
-                println("Código não reconhecido. Informe código numerico")
-            }
-
         }
-        var aux: String? = null
+    }
+    private fun verificaNome(){
+        var aux: String? = this.nome
         print("Nome: ")
         aux = readLine()
         aux?.let {
             setNome(aux.toString())
         }
+
+    }
+    private fun verificaSobrenome(){
         print("Sobrenome: ")
-        aux = readLine()
+        val aux = readLine()
         aux?.let {
             setSobrenome(aux.toString())
         }
+
     }
     private fun setNome(nome: String){
         this.nome = nome
