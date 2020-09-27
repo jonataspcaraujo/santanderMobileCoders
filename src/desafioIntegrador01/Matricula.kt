@@ -5,10 +5,13 @@ import java.time.LocalDateTime
 class Matricula(private var aluno: Aluno,
                 private var curso: Curso) {
 
-    private val dataMatricula = LocalDateTime.now()
+    private var dataMatricula: LocalDateTime? = null
+    init{
+        this.dataMatricula = LocalDateTime.now()
+    }
 
     fun getMatAluno() = this.aluno
     fun getMatCurso() = this.curso
-    fun getDataMatricula() = this.dataMatricula.toLocalDate()
+    fun getDataMatricula() = this.dataMatricula?.toLocalDate()
 
 }

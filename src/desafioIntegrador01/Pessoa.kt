@@ -6,7 +6,7 @@ abstract class Pessoa(
         private var sobrenome: String? = null) {
 
     init{
-        println("Verificando Situação Cadastral")
+  //      println("Verificando Situação Cadastral")
         this.codigo?: verificaMatricula()
         if(this.codigo <= 0) verificaMatricula()
         this.nome?: verificaNome()

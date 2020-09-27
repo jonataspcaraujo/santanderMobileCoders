@@ -10,7 +10,9 @@ class Curso(private var nome: String? = null,
     private var profAdjunto: ProfAdjunto? = null
     private var sAlunos = mutableSetOf<Aluno>()
 
+
     init{
+
 //        println("cadastrando curso")
 //        print("Código do Curso: ")
 //        val cod = readLine()

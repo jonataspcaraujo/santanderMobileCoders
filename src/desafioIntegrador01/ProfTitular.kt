@@ -1,6 +1,7 @@
 package desafioIntegrador01
 
-class ProfTitular(private var especialidade: String? = null):Professor() {
+class ProfTitular(codigo: Int = -1, nome: String? = null, sobrenome: String? = null,
+                  private var especialidade: String? = null): Professor(codigo,nome,sobrenome) {
 
     init {
         especialidade?: verificaEspecialidae()

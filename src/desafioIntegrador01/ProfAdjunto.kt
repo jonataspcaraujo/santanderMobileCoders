@@ -1,6 +1,8 @@
 package desafioIntegrador01
 
-class ProfAdjunto(private var qtdHrMonitoria: Int = -1): Professor() {
+class ProfAdjunto(codigo: Int = -1, nome: String? = null, sobrenome: String? = null,
+                  private var qtdHrMonitoria: Int = -1): Professor(codigo,nome,sobrenome) {
+
     init{
         var horas: Int = qtdHrMonitoria
         horas?.let{
