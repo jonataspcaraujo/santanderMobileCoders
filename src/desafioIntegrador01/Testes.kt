@@ -23,9 +23,8 @@ fun main(){
 //   println("Tempo de Casa: ${professor.getTempoDeCasa().get("ano")} anos, " +
 //           "${professor.getTempoDeCasa().get("mes")} meses e " +
 //           "${professor.getTempoDeCasa().get("dia")} dias")
-
-      val professor2 = ProfAdjunto()
-      println("Horas: ${professor2.getQtMonitoria()}")
+//      val professor2 = ProfAdjunto()
+//      println("Horas: ${professor2.getQtMonitoria()}")
 
 
 }
