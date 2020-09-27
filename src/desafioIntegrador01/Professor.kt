@@ -2,23 +2,14 @@ package desafioIntegrador01
 
 import java.time.LocalDate
 
-class Professor():Pessoa() {
+abstract class Professor():Pessoa() {
 
    private var dataContratacao: LocalDate? = null
     init{
-
         println("Data de contratação (YYYY-MM-DD): ")
         val aux = readLine()
         setDataContratacao(LocalDate.parse(aux))
-
-//        val data2 = LocalDate.parse(aux)
-//        println(data2)
-////        val data1 = LocalDate.of(2019,9,27)
-////        println(data1)
-//        val dataNow = LocalDate.now()
-//        println(dataNow)
     }
-
     private fun setDataContratacao(data: LocalDate){
         this.dataContratacao = data
     }
