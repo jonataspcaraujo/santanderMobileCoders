@@ -106,7 +106,6 @@ fun main(){
 //   matriculas.forEach {
 //      println("${it.getMatAluno().getNome()} - ${it.getMatCurso().getNomeCurso()} DataMatricula: ${it.getDataMatricula()}")
 //   }
-
    gestor.registrarProfessor("Pedro","Araujo",789,8)
    gestor.registrarProfessor("Ana","Elisabeth",456,"Historia")
    gestor.alocarProfessores(999,456,789)

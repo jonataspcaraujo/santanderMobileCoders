@@ -1,7 +1,9 @@
 package desafioIntegrador01
 
-class ProfAdjunto(codigo: Int = -1, nome: String? = null, sobrenome: String? = null,
-                  private var qtdHrMonitoria: Int = -1): Professor(codigo,nome,sobrenome) {
+import java.time.LocalDate
+
+class ProfAdjunto(codigo: Int = -1, nome: String? = null, sobrenome: String? = null, dataContratacao: LocalDate? = null,
+                  private var qtdHrMonitoria: Int = -1): Professor(codigo,nome,sobrenome, dataContratacao) {
 
     init{
         var horas: Int = qtdHrMonitoria

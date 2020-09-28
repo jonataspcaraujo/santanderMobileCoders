@@ -1,7 +1,9 @@
 package desafioIntegrador01
 
-class ProfTitular(codigo: Int = -1, nome: String? = null, sobrenome: String? = null,
-                  private var especialidade: String? = null): Professor(codigo,nome,sobrenome) {
+import java.time.LocalDate
+
+class ProfTitular(codigo: Int = -1, nome: String? = null, sobrenome: String? = null, dataContratacao: LocalDate? = null,
+                  private var especialidade: String? = null): Professor(codigo,nome,sobrenome, dataContratacao) {
 
     init {
         especialidade?: verificaEspecialidae()

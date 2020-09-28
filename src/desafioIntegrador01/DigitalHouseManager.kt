@@ -38,10 +38,10 @@ class DigitalHouseManager() {
     }
     fun registrarProfessor(nome: String, sobrenome: String, codigo: Int, horas: Int){
         if(sProfAdjunto.isEmpty()) {
-            sProfAdjunto.add(ProfAdjunto(codigo,nome,sobrenome,horas))
+            sProfAdjunto.add(ProfAdjunto(codigo,nome,sobrenome,null,horas))
             //   println("Lista de adjuntos iniciada")
         } else if (!isProfAdjunto(codigo)){
-            sProfAdjunto.add(ProfAdjunto(codigo,nome,sobrenome,horas))
+            sProfAdjunto.add(ProfAdjunto(codigo,nome,sobrenome,null, horas))
 //            println("adjunto adicionado")
         } else{
             println("Professor Adjunto já cadastrado")
@@ -49,10 +49,10 @@ class DigitalHouseManager() {
     }
     fun registrarProfessor(nome: String, sobrenome: String, codigo: Int, especialidade: String){
         if(sProfTitular.isEmpty()) {
-            sProfTitular.add(ProfTitular(codigo,nome,sobrenome,especialidade))
+            sProfTitular.add(ProfTitular(codigo,nome,sobrenome,null,especialidade))
             //   println("Lista de adjuntos iniciada")
         } else if (!isProfTitular(codigo)){
-            sProfTitular.add(ProfTitular(codigo,nome,sobrenome,especialidade))
+            sProfTitular.add(ProfTitular(codigo,nome,sobrenome,null,especialidade))
 //            println("titular adicionado")
         } else{
             println("Professor Titular já cadastrado")
