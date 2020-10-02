@@ -115,7 +115,7 @@ fun main(){
    curso?.let{
       println("Ficha do curso: (${it.getCodigoCurso()}) ${it.getNomeCurso()}")
       println("Professor Titular: ${it.getProfessorTitular()?.getNome()} Especialidade: ${it.getProfessorTitular()?.getEspecialidade()}")
-      println("Professor Adjunto: ${it.getProfessorAdjunto()?.getNome()} Horas/Semana: ${it.getProfessorAdjunto()?.getQtMonitoria()}")
+//      println("Professor Adjunto: ${it.getProfessorAdjunto()?.getNome()} Horas/Semana: ${it.getProfessorAdjunto()?.getQtMonitoria()}")
       println("Vagas: ${it.getVagasDisponíveis()}")
    }
 //   gestor.excluirCurso(999)
@@ -125,7 +125,7 @@ fun main(){
    curso?.let{
       println("Ficha do curso: (${it.getCodigoCurso()}) ${it.getNomeCurso()}")
       println("Professor Titular: ${it.getProfessorTitular()?.getNome()} Especialidade: ${it.getProfessorTitular()?.getEspecialidade()}")
-      println("Professor Adjunto: ${it.getProfessorAdjunto()?.getNome()} Horas/Semana: ${it.getProfessorAdjunto()?.getQtMonitoria()}")
+//      println("Professor Adjunto: ${it.getProfessorAdjunto()?.getNome()} Horas/Semana: ${it.getProfessorAdjunto()?.getQtMonitoria()}")
       println("Vagas: ${curso.getVagasDisponíveis()}")
    }
 
