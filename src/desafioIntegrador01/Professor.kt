@@ -2,24 +2,21 @@ package desafioIntegrador01
 
 import java.time.LocalDate
 
-abstract class Professor(codigo: Int = -1, nome: String? = null, sobrenome: String? = null,
+/* Classe abstrata para subsidiar propriedades e métodos comuns às classes
+ * Professor Titular e Professor Adjunto, tendo como base a classe Pessoa.
+ */
+abstract class Professor(codigo: Int = -1,
+                         nome: String? = null,
+                         sobrenome: String? = null,
                          private var dataContratacao: LocalDate? = null):
         Pessoa(codigo,nome,sobrenome) {
+//    private var tempoDeCasa = ""
 
     /* Inicia o objeto Professor (titular/adjunto) e verifica se a data de contratação foi informada.
     * Caso data de contratação seja null, é solicitado que o usuário informe a data de contratação
      */
     init{
         dataContratacao?:setDataContratacao()
-    }
-
-    /* Função privada para cadastrar a data de contratação de um professor, caso o objeto tenha sido criado
-     * tendo esta propriedade com valor nulo
-     */
-    private fun setDataContratacao(){
-        println("Data de contratação do professor ${this.getNome()} (YYYY-MM-DD): ")
-        val aux = readLine()
-        this.dataContratacao = LocalDate.parse(aux)
     }
     // Função que retorna a data de contratação de um objeto Professor (titular/adjunto)
     fun getDataContratacao(): LocalDate?{
@@ -49,6 +46,12 @@ abstract class Professor(codigo: Int = -1, nome: String? = null, sobrenome: Stri
 //        println("Diferenca dia: $dias")
         return tempoDeCasa
     }
-
-
+    /* Função privada para cadastrar a data de contratação de um professor, caso o objeto tenha sido criado
+     * tendo esta propriedade com valor nulo
+     */
+    private fun setDataContratacao(){
+        println("Data de contratação do professor ${this.getNome()} (YYYY-MM-DD): ")
+        val aux = readLine()
+        this.dataContratacao = LocalDate.parse(aux)
+    }
 }

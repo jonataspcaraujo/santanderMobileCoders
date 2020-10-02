@@ -31,4 +31,15 @@ fun main(){
     gestor.matricularAluno(90,9999)
     println("Curso: ${gestor.getCurso(9999)?.getNomeCurso()} \tVagas: ${gestor.getCurso(9999)?.getVagasDisponíveis()}")
 
+    val alunosCurso = gestor.getCurso(9999)?.getAlunos()
+    println("Relação Alunos - Curso: ${gestor.getCurso(9999)?.getNomeCurso()}")
+    alunosCurso?.forEach {
+        println("${it.getCodigo()}  ${it.getNome()} ${it.getSobrenome()}")
+    }
+//    val aluno = gestor.getAluno()
+    gestor.getAluno(99)?.let { gestor.getCurso(9999)?.excluirAluno(it) }
+    println("Relação Alunos - Curso: ${gestor.getCurso(9999)?.getNomeCurso()}")
+    alunosCurso?.forEach {
+        println("${it.getCodigo()}  ${it.getNome()} ${it.getSobrenome()}")
+    }
 }

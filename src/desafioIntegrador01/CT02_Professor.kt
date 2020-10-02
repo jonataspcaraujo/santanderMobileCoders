@@ -11,22 +11,25 @@ fun main(){
     gestor.registrarProfessor("Jonatas","Araujo", 789,8)
     gestor.registrarProfessor("Jamilli","Paulino", 987,4)
     gestor.registrarProfessor("Pedro", "Araujo", 456,6)
+    //Registrando professor já existente
     gestor.registrarProfessor("Matheus", "Araujo", 456,6)
-    println("Professores Adjuntos")
+    println("Professores Adjuntos-----------------------------------------------------------------")
     profAdj.forEach {
         println("${it.getCodigo()} ${it.getNome()} ${it.getSobrenome()} ${it.getDataContratacao()} " +
                 "Tempo de Casa: ${it.getTempoDeCasa()}")
     }
+    println("------------------------------------------------------------------------------------")
     //Registrando professores Titulares
     gestor.registrarProfessor("Jonatas", "Araujo", 789,"Android")
     gestor.registrarProfessor("Ana", "Elisabeth",963,"POO")
-    gestor.registrarProfessor("Matheus", "Araujo", 852,"Kotlin")
-    println("Professores Titulares")
+    //Registrando professor já existente
+    gestor.registrarProfessor("Matheus", "Araujo", 789,"Kotlin")
+    println("Professores Titulares---------------------------------------------------------------")
     profTit.forEach {
         println("${it.getCodigo()} ${it.getNome()} ${it.getSobrenome()} ${it.getDataContratacao()} " +
                 "Tempo de Casa: ${it.getTempoDeCasa()}")
     }
-
+    println("------------------------------------------------------------------------------------")
     //Excluindo Professor e exibindo relação atualizada de professores
     gestor.excluirProfessor(789)
     println("Professores Adjuntos")
@@ -39,7 +42,7 @@ fun main(){
         println("${it.getCodigo()} ${it.getNome()} ${it.getSobrenome()} ${it.getDataContratacao()} " +
                 "Tempo de Casa: ${it.getTempoDeCasa()}")
     }
-
+    println("------------------------------------------------------------------------------------")
     gestor.registrarCurso("Kotlin", 9999, 2)
 
     // Alocando professores no curso e exibindo ficha técnica do curso
@@ -48,5 +51,18 @@ fun main(){
     println("Nome: ${gestor.getCurso(9999)?.getNomeCurso()} Vagas: ${gestor.getCurso(9999)?.getVagasDisponíveis()}")
     println("Professor Titular: ${gestor.getCurso(9999)?.getProfessorTitular()?.getNome()}")
     println("Professor Adjunto: ${gestor.getCurso(9999)?.getProfessorAdjunto()?.getNome()}")
+    println("------------------------------------------------------------------------------------")
+
+    gestor.excluirProfessor(789)
+    println("Professores Titulares")
+    profTit.forEach {
+        println("${it.getCodigo()} ${it.getNome()} ${it.getSobrenome()} ${it.getDataContratacao()} " +
+                "Tempo de Casa: ${it.getTempoDeCasa()}")
+    }
+    println("Professores Adjuntos")
+    profAdj.forEach {
+        println("${it.getCodigo()} ${it.getNome()} ${it.getSobrenome()} ${it.getDataContratacao()} " +
+                "Tempo de Casa: ${it.getTempoDeCasa()}")
+    }
 
 }

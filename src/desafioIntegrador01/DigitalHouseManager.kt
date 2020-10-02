@@ -2,26 +2,23 @@ package desafioIntegrador01
 
 import java.time.LocalDate
 
-class DigitalHouseManager() {
+class DigitalHouseManager {
     private var sAlunos = mutableSetOf<Aluno>()
     private var sProfTitular = mutableSetOf<ProfTitular>()
-    private var sProfAdjunto = mutableListOf<ProfAdjunto>()
+    private var sProfAdjunto = mutableSetOf<ProfAdjunto>()
     private var sCursos = mutableSetOf<Curso>()
     private var lMatriculas = mutableListOf<Matricula>()
 
-    init {
-        println("Gestor iniciado")
-    }
     /* Esta função permite registrar um curso.
     * O método recebe como parâmetros o nome do curso, o código e a quantidade máxima de alunos admitidos.
     * O método deve criar um curso com os dados correspondentes e adicioná-lo à lista de cursos.
      */
     fun registrarCurso(nome: String, codigoCurso: Int, qtdVagas: Int){
-        if (!hasCurso(codigoCurso)){
-            sCursos.add(Curso(nome, codigoCurso,qtdVagas))
-        } else{
+        getCurso(codigoCurso)?.let {
             println("O curso $codigoCurso - $nome já existe no catálogo")
         }
+
+        getCurso(codigoCurso)?:sCursos.add(Curso(nome, codigoCurso,qtdVagas))
     }
     /* Esta função permite excluir um curso existente no catálogo.
     * A função recebe como parâmetro o código do curso a ser removido.
@@ -40,11 +37,10 @@ class DigitalHouseManager() {
     * A função deve criar um professor adjunto com os dados correspondentes e adicioná-lo à lista de professores.
      */
     fun registrarProfessor(nome: String, sobrenome: String, codigo: Int, horas: Int){
-        if (!isProfAdjunto(codigo)){
-            sProfAdjunto.add(ProfAdjunto(codigo,nome,sobrenome, LocalDate.now(), horas))
-        } else{
+        getProfAdjunto(codigo)?.let{
             println("$nome $sobrenome já consta registrado como professor adjunto. Código associado: $codigo")
         }
+        getProfAdjunto(codigo)?:sProfAdjunto.add(ProfAdjunto(codigo,nome,sobrenome, LocalDate.now(),horas))
     }
     /* Esta função permite registrar um professor titula.
     * A função recebe como parâmetros o nome do professor, o sobrenome, o código e a especialidade.
@@ -52,10 +48,10 @@ class DigitalHouseManager() {
     * A função deve criar um professor adjunto com os dados correspondentes e adicioná-lo à lista de professores.
      */
     fun registrarProfessor(nome: String, sobrenome: String, codigo: Int, especialidade: String){
-        if (!isProfTitular(codigo)){
-            sProfTitular.add(ProfTitular(codigo,nome,sobrenome, LocalDate.now(),especialidade))
-        } else{
-            println("$nome $sobrenome já consta registrado como professor adjunto. Código associado: $codigo")        }
+        getProfTitular(codigo)?.let{
+            println("$nome $sobrenome já consta registrado como professor titular. Código associado: $codigo")
+        }
+        getProfTitular(codigo)?:sProfTitular.add(ProfTitular(codigo,nome,sobrenome, LocalDate.now(),especialidade))
     }
     /*  Esta função permite excluir um professor.
     * O método recebe como parâmetro o código do professor.
@@ -63,30 +59,22 @@ class DigitalHouseManager() {
     *  lista.
      */
     fun excluirProfessor(codigo: Int){
-        if ( (isProfTitular(codigo)||isProfAdjunto(codigo))){
-            val titular = excluirProfessorTitular(codigo)
-            val adjunto = excluirProfessorAdjunto(codigo)
-            println("Registros excluídos")
-            titular?.let{
-                println ("${it.getNome()}: Cargo: Professor Titular")
-            }
-            adjunto?.let{
-                println ("${it.getNome()}: Cargo: Professor Adjunto")
-            }
-        } else{
-            println("Não foi encontrado professor para o código informado")
+        getProfTitular(codigo)?:getProfAdjunto(codigo)?: println("Professor não encontrado")
+        getProfTitular(codigo)?.let{
+            sProfTitular.remove(it)
+        }
+        getProfAdjunto(codigo)?.let {
+            sProfAdjunto.remove(it)
         }
     }
     /* Esta função registra um aluno na relação de alunos da escola.
     * O método recebe como parâmetros o nome, o sobrenome e o código do aluno.
     */
     fun matricularAluno(nome: String, sobrenome: String, codigo: Int){
-        if (!isAluno(codigo)){
-            sAlunos.add(Aluno(codigo,nome,sobrenome))
-            //   println("aluno adicionado")
-        } else{
-             println("Já existe aluno para o código: $codigo")
+        getAluno(codigo)?.let {
+            println("Já existe aluno para o código: $codigo")
         }
+        getAluno(codigo)?:sAlunos.add(Aluno(codigo,nome,sobrenome))
     }
     /* Esta função registra uma relação entre um Aluno e um Curso, caso existam vagas disponíveis no curso.
     */
@@ -133,75 +121,12 @@ class DigitalHouseManager() {
         }
     }
 
-    /* Função auxiliar para excluir professor Adjunto
-* O parâmetro código é chave de busca do professor a ser removido.
-* A função retorna o objeto que foi excluído da da relação ou null caso o professor não esteja
-* nesta relação.
- */
-    private fun excluirProfessorAdjunto(codigo: Int):ProfAdjunto?{
-        var professor: ProfAdjunto? = null
-        sProfAdjunto.forEach {
-            if(it.getCodigo() == codigo){
-                professor = it
-            }
-        }
-        professor?.let{
-            sProfAdjunto.remove(it)
-            return it
-        }
-        return null
-    }
-    /* Função auxiliar para excluir professor Titular
-    * O parâmetro código é chave de busca do professor a ser removido.
-    * A função retorna o objeto que foi excluído da da relação ou null caso o professor não esteja
-    * nesta relação.
-    */
-    private fun excluirProfessorTitular(codigo: Int):ProfTitular?{
-        var professor: ProfTitular? = null
-        sProfTitular.forEach {
-            if(it.getCodigo() == codigo){
-                professor = it
-            }
-        }
-        professor?.let{
-            sProfTitular.remove(it)
-            return it
-        }
-        return null
-    }
-
+    /* Funções Auxiliares*/
     fun getCursos() = sCursos
     fun getAlunos() = sAlunos
     fun getProfsTitular() = sProfTitular
     fun getProfsAdjunto() = sProfAdjunto
     fun getMatriculas() = lMatriculas
-    fun hasCurso(codigo: Int):Boolean{
-        sCursos.forEach {
-            if (it.getCodigoCurso() == codigo) {
-                println("Cod curso:${it.getCodigoCurso()} codigo: $codigo ")
-                return true
-            }
-        }
-        return false
-    }
-    fun getCurso(codigo: Int):Curso?{
-        sCursos.forEach {
-            if (it.getCodigoCurso() == codigo) {
-//                println("Cod curso:${it.getCodigoCurso()} codigo: $codigo ")
-                return it
-            }
-        }
-        return null
-    }
-    fun isProfTitular(codigo: Int): Boolean{
-        sProfTitular.forEach {
-            if (it.getCodigo() == codigo) {
-//                println("Cod profTitular::${it.getCodigo()} codigo: $codigo ")
-                return true
-            }
-        }
-        return false
-    }
     fun getProfTitular(codigo: Int):ProfTitular?{
         sProfTitular.forEach {
             if (it.getCodigo() == codigo) {
@@ -220,23 +145,14 @@ class DigitalHouseManager() {
         }
         return null
     }
-    fun isProfAdjunto(codigo: Int): Boolean{
-        sProfAdjunto.forEach {
-            if (it.getCodigo() == codigo) {
-                println("Cod profTitular::${it.getCodigo()} codigo: $codigo ")
-                return true
+    fun getCurso(codigo: Int):Curso?{
+        sCursos.forEach {
+            if (it.getCodigoCurso() == codigo) {
+//                println("Cod curso:${it.getCodigoCurso()} codigo: $codigo ")
+                return it
             }
         }
-        return false
-    }
-    fun isAluno(codigo: Int): Boolean{
-        sAlunos.forEach {
-            if (it.getCodigo() == codigo) {
-//                println("Cod aluno:${it.getCodigo()} codigo: $codigo ")
-                return true
-            }
-        }
-        return false
+        return null
     }
     fun getAluno(codigo: Int):Aluno?{
         sAlunos.forEach {
@@ -247,5 +163,4 @@ class DigitalHouseManager() {
         }
         return null
     }
-
 }

@@ -7,27 +7,30 @@ fun main(){
     val gestor = DigitalHouseManager()
     var cursos = gestor.getCursos()
 
-    // Resgistrando cursos
+    println("--------------------------------------------------------------------")
+    println("Resgistrando cursos")
     gestor.registrarCurso("POO",999,10)
     gestor.registrarCurso("Kotlin",888,10)
     gestor.registrarCurso("Android",777,10)
-    //Adicionando curso já existente
+    println("-------------------------------------------------------------------")
+    println(" Resgistrando curso já existente")
     gestor.registrarCurso("POO",999,20)
-
-    // exibindo catálogo de cursos cadastrados
+    println("-------------------------------------------------------------------")
     println("Catálogo de Cursos")
     cursos.forEach {
         println("${it.getCodigoCurso()} \t${it.getNomeCurso()} \tVagas:${it.getVagasDisponíveis()}")
     }
-    //excluindo cursos
+    println("-------------------------------------------------------------------")
+    println("Excluindo Curso existente")
+    val curso = gestor.getCurso(888)
     gestor.excluirCurso(888)
-
-    //Excluindo curso inexistente no catálogo
+    println("-------------------------------------------------------------------")
+    println("Excluindo Curso inexistente")
     gestor.excluirCurso(555)
-
-    //Exibindo catálogo atualizado após exclusões
+    println("-------------------------------------------------------------------")
+    println("Catálogo de Cursos após exclusões")
     cursos.forEach {
         println("${it.getCodigoCurso()} \t${it.getNomeCurso()} \tVagas:${it.getVagasDisponíveis()}")
     }
-
+    println("Fim do Teste")
 }
